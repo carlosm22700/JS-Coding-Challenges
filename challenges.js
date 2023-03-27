@@ -34,7 +34,11 @@ addOne(-5) //=> -4
 -----------------------------------------------------------------*/
 // Your solution for 01-addOne here:
 
+function addOne (num){
 
+  return num + 1;
+
+}
 
 
 
@@ -58,7 +62,12 @@ addTwoNumbers('Hello', 5) //=> NaN
 // Your solution for 02-addTwoNumbers here:
 
 
-
+function addTwoNumbers(num1, num2) {
+  if (typeof num1 !== 'number' || typeof num2 !== 'number') {
+    return NaN;
+  }
+  return num1 + num2;
+}
 
 
 /*-----------------------------------------------------------------
@@ -80,7 +89,18 @@ sumNumbers([]) //=> 0
 -----------------------------------------------------------------*/
 // Your solution for 03-sumNumbers here:
 
-
+// Write a function called sumNumbers that accepts a single array of numbers and returns the sum of the numbers in the array.
+function sumNumbers (array) {
+  //If the array is empty, return 0 (zero).
+  let sum = 0
+  if (array.length === 0){
+    return 0;
+  }
+  array.forEach(i => {
+      sum += i;
+    });
+  return sum;
+}
 
 
 
@@ -103,6 +123,13 @@ add(7,-12) //=> -5
 -----------------------------------------------------------------*/
 // Your solution for 04-addList here:
 
+function addList () {
+  let sum = 0; 
+  for (let i = 0; i <arguments.length; i++) {
+    sum += arguments[i];
+  }
+  return sum;
+}
 
 
 
@@ -127,7 +154,13 @@ computeRemainder(10.5, 3) //=> 1.5
 -----------------------------------------------------------------*/
 // Your solution for 05-computeRemainder:
 
+const computeRemainder = (dividend, divisor) => {
+  if (divisor === 0){
+    return Infinity;
+  }
 
+  return dividend - Math.floor(dividend / divisor) * divisor;
+}
 
 
 
