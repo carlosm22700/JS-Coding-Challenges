@@ -183,6 +183,17 @@ range(5,2) //=> "First argument must be less than second"
 -----------------------------------------------------------------*/
 // Your solution for 06-range here:
 
+function range (start, stop){
+  if (start > stop) {
+    return 'First argument must be less than second';
+  }
+
+  const result = [];
+  for (let i = start; i < stop; i++) {
+    result.push(i);
+  }
+  return result;
+}
 
 
 
@@ -202,9 +213,9 @@ reverseUpcaseString("SEI Rocks!"); //=> "!SKCOR IES"
 -----------------------------------------------------------------*/
 // Your solution for 07-reverseUpcaseString here:
 
-
-
-
+function reverseUpcaseString (string) {
+  return string.split('').reverse().join('').toUpperCase();
+}
 
 /*-----------------------------------------------------------------
 Challenge: 08-removeEnds
@@ -223,6 +234,13 @@ removeEnds('a'); //=> "" (empty string)
 -----------------------------------------------------------------*/
 // Your solution for 08-removeEnds here:
 
+function removeEnds (string) {
+  if (string.length < 3) {
+    return '';
+  } else {
+    return string.substring(1, string.length -1);
+  }
+}
 
 
 
@@ -245,6 +263,30 @@ charCount('hello') //=> { h: 1, e: 1, l: 2, o: 1 }
 charCount('Today is fantastic!') //=> { T: 1, o: 1, d: 1, a: 3, y: 1, ' ': 2, i: 2, s: 2, f: 1, n: 1, t: 2, c: 1, '!': 1 }
 -----------------------------------------------------------------*/
 // Your solution for 09-charCount here:
+
+function charCount (str) {
+  //create an empty object to store character counts
+  const charCounts = {};
+
+  //loop through each char in the string
+
+  for (let i = 0; i < str.length; i++) {
+    const char = str[i];
+    //if char is not in obj, add it with a count of 1 
+
+    if (!charCounts[char]) {
+      charCounts[char] = 1;
+
+    }
+    //otherwise, if the character is already in obj, increment its count by 1
+    else {
+      charCounts[char]++;
+    }
+  }
+  return charCounts;
+}
+
+
 
 
 
@@ -272,10 +314,16 @@ formatWithPadding(1234, '*', 3); //=> "1234"
 -----------------------------------------------------------------*/
 // Your solution for 10-formatWithPadding here:
 
+function formatWithPadding (num, str, len) {
+  //needs to return num as a string with padding of len on the left
+  let numString = num.toString();
+  let padCount = len - numString.length;
 
-
-
-
+  if (padCount > 0) {
+    numString = str.repeat(padCount) + numString
+  }
+  return numString
+}
 /*-----------------------------------------------------------------
 Challenge: 11-isPalindrome
 
@@ -297,8 +345,26 @@ isPalindrome(''); //=> true
 -----------------------------------------------------------------*/
 // Your solution for 11-isPalindrome here:
 
+// function isPalindrome (string) {
+//   //returns true or false if string is Palindrome
 
+//   let reversedString = string.split('').reverse().join('');
 
+// }
+
+function isPalindrome (string) {
+  let lowerCaseString = string.toLowerCase();
+  let spacelessString = '';
+  for (let i = 0; i < lowerCaseString.length; i++) {
+    if (lowerCaseString[i] !== ' '){
+      spacelessString += lowerCaseString[i];
+    }
+  }
+
+  let reversedString = spacelessString.split('').reverse().join('');
+
+  return spacelessString === reversedString;
+}
 
 
 /*-----------------------------------------------------------------
