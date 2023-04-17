@@ -448,15 +448,6 @@ function mumble(str) {
   return result;
 }
 
-console.log(mumble('X')); // 'X'
-console.log(mumble('abc')); // 'a-bb-ccc'
-console.log(mumble('121')); // '1-22-111'
-console.log(mumble('!A 2')); // '!-AA-   -2222'
-
-
-
-
-
 /*-----------------------------------------------------------------
 Challenge: 14-fromPairs
 
@@ -476,16 +467,25 @@ fromPairs([ ['name', 'Sam"], ['age', 24], ['name', 'Sally'] ]) //=> { name: "Sal
 // Your solution for 14-fromPairs here:
 
 function fromPairs(arr) {
+  //creates an object to store key value pairs
   const obj = {};
-  for (const pair of arr) {
-    const [key, value] = pair;
+
+  //loop through each pair in the input array
+  for (let i = 0; i < arr.length; i++) {
+    //get the current pair
+    const pair = arr[i];
+
+    //get the key and value from the current pair
+    const key = pair[0];
+    const value = pair[1];
+
+    //Add a new property to the obj with the key and value from the current pair
     obj[key] = value;
   }
-  return obj;
+
+  //return the obj
+  return obj
 }
-
-
-
 
 /*-----------------------------------------------------------------
 Challenge: 15-mergeObjects
@@ -504,18 +504,16 @@ mergeObjects({a: 1, b: 2, c: 3}, {d: 4});  //=> {a: 1, b: 2, c: 3, d: 4}
 mergeObjects({a: 1, b: 2, c: 3}, {d: 4}, {b: 22, d: 44});  //=> {a: 1, b: 22, c: 3, d: 44}
 -----------------------------------------------------------------*/
 // Your solution for 15-mergeObjects here:
-function mergeObjects(target, ...sources) {
-  for (const source of sources) {
-    for (const key in source) {
-      if (source.hasOwnProperty(key)) {
-        target[key] = source[key];
+function mergeObjects(targetObject, ...sourceObjects) {
+  for (const sourceObject of sourceObjects) {
+    for (const propertyKey in sourceObject) {
+      if (sourceObject.hasOwnProperty(propertyKey)) {
+        targetObject[propertyKey] = sourceObject[propertyKey];
       }
     }
   }
-  return target;
+  return targetObject;
 }
-
-
 
 /*-----------------------------------------------------------------
 Challenge: 16-findHighestPriced
