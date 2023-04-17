@@ -389,6 +389,19 @@ hammingDistance('abc', 'ab'); //=> NaN
 -----------------------------------------------------------------*/
 // Your solution for 12-hammingDistance here:
 
+function hammingDistance (stringA, stringB){
+  if (stringA.length !== stringB.length){
+    return NaN
+  } else {
+    let distance= 0;
+    for (let i = 0; i <stringA.length; i++) {
+      if (stringA[i] !== stringB[i]){
+        distance++;
+      }
+    }
+    return distance;
+  }
+}
 
 
 
@@ -412,6 +425,33 @@ mumble('121'); //=> '1-22-111'
 mumble('!A 2'); //=> '!-AA-   -2222'
 -----------------------------------------------------------------*/
 // Your solution for 13-mumble here:
+function mumble(str) {
+  if (!str || typeof str !== 'string') {
+    console.error('Input must be a non-empty string.');
+    return '';
+  }
+
+  let result = '';
+
+  for (let i = 0; i < str.length; i++) {
+    let char = str.charAt(i);
+
+    for (let j = 0; j <= i; j++) {
+      result += char;
+    }
+
+    if (i < str.length - 1) {
+      result += '-';
+    }
+  }
+
+  return result;
+}
+
+console.log(mumble('X')); // 'X'
+console.log(mumble('abc')); // 'a-bb-ccc'
+console.log(mumble('121')); // '1-22-111'
+console.log(mumble('!A 2')); // '!-AA-   -2222'
 
 
 
@@ -435,6 +475,14 @@ fromPairs([ ['name', 'Sam"], ['age', 24], ['name', 'Sally'] ]) //=> { name: "Sal
 -----------------------------------------------------------------*/
 // Your solution for 14-fromPairs here:
 
+function fromPairs(arr) {
+  const obj = {};
+  for (const pair of arr) {
+    const [key, value] = pair;
+    obj[key] = value;
+  }
+  return obj;
+}
 
 
 
@@ -456,8 +504,16 @@ mergeObjects({a: 1, b: 2, c: 3}, {d: 4});  //=> {a: 1, b: 2, c: 3, d: 4}
 mergeObjects({a: 1, b: 2, c: 3}, {d: 4}, {b: 22, d: 44});  //=> {a: 1, b: 22, c: 3, d: 44}
 -----------------------------------------------------------------*/
 // Your solution for 15-mergeObjects here:
-
-
+function mergeObjects(target, ...sources) {
+  for (const source of sources) {
+    for (const key in source) {
+      if (source.hasOwnProperty(key)) {
+        target[key] = source[key];
+      }
+    }
+  }
+  return target;
+}
 
 
 
