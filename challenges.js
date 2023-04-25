@@ -549,8 +549,16 @@ findHighestPriced([
 -----------------------------------------------------------------*/
 // Your solution for 16-findHighestPriced here:
 
+function findHighestPriced(arr) {
+  let highestPriced = arr[0];
 
-
+  for (let i = 1; i < arr.length; i ++) {
+    if (arr[i].price > highestPriced.price) {
+      highestPriced = arr[i];
+    }
+  }
+  return highestPriced;
+}
 
 
 /*-----------------------------------------------------------------
@@ -580,6 +588,15 @@ mapArray( ['rose', 'tulip', 'daisy'], function(f, i) {
 -----------------------------------------------------------------*/
 // Your solution for 17-mapArray here:
 
+function mapArray(arr, callback) {
+  const result = [];
+
+  for(let i = 0; i < arr.length; i++) {
+    result.push(callback(arr[i], i));
+  }
+
+  return result;
+}
 
 
 
@@ -618,6 +635,14 @@ reduceArray( ['Yes', 'No', 'Yes', 'Maybe'], function(acc, v) {
 -----------------------------------------------------------------*/
 // Your solution for 18-reduceArray here:
 
+function reduceArray(arr, callback, initialValue) {
+  let total = initialValue;
+
+  for (let i = 0; i < arr.length; i++) {
+    total = callback(total, arr[i], i);
+  }
+  return total;
+}
 
 
 
@@ -649,7 +674,18 @@ flatten( [1, [2, [3, [4]]], 1, 'a', ['b', 'c']] );
 -----------------------------------------------------------------*/
 // Your solution for 19-flatten here:
 
+function flatten(arr) {
+  let result = [];
 
+  for (let i = 0; i < arr.length; i++) {
+    if (Array.isArray(arr[i])) {
+      result = result.concat(flatten(arr[i]));
+    } else {
+      result.push(arr[i])
+    }
+  }
+  return result;
+}
 
 
 
@@ -673,7 +709,15 @@ isPrime(200) //=> false
 -----------------------------------------------------------------*/
 // Your solution for 20-isPrime here:
 
-
+function isPrime(num) {
+  if (num < 2 || !Number.isInteger(num)) {
+    return false;
+  } 
+  for ( let i = 2; i <= Math.sqrt(num); i++) {
+    if (num % i === 0) return false;
+  }
+  return true;
+}
 
 
 
@@ -701,7 +745,17 @@ primeFactors(200) //=> [2, 2, 2, 5, 5]
 -----------------------------------------------------------------*/
 // Your solution for 21-primeFactors here:
 
+// function primeFactors(num) {
+//   let factors = [];
 
+//   if (num < 2 || !Number.isInteger(num)) {
+//     return factors;
+//   }
+
+//   for (let i = 2; i <= num; i++) {
+//     while())
+//   }
+// }
 
 
 
