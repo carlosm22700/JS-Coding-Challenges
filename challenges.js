@@ -745,17 +745,22 @@ primeFactors(200) //=> [2, 2, 2, 5, 5]
 -----------------------------------------------------------------*/
 // Your solution for 21-primeFactors here:
 
-// function primeFactors(num) {
-//   let factors = [];
-
-//   if (num < 2 || !Number.isInteger(num)) {
-//     return factors;
-//   }
-
-//   for (let i = 2; i <= num; i++) {
-//     while())
-//   }
-// }
+function primeFactors(num) {
+  let factors = [];
+  
+  if (num < 2 || !Number.isInteger(num)) {
+  return factors;
+  }
+  
+  for (let i = 2; i <= num; i++) {
+  while (num % i === 0) {
+  factors.push(i);
+  num = num / i;
+  }
+  }
+  
+  return factors;
+  }
 
 
 
@@ -780,9 +785,20 @@ intersection([1, 'a', true, 1, 1], [true, 1, 'b', 1]) //=> [1, true, 1]
 -----------------------------------------------------------------*/
 // Your solution for 22-intersection here:
 
+function intersection(arr1, arr2) {
+  let result = [];
+  let tempArr2 = [...arr2];
 
+  arr1.forEach((item) => {
+    let index = tempArr2.indexOf(item);
+    if (index !== -1) {
+      result.push(item);
+      tempArr2.splice(index, 1);
+    }
+  });
 
-
+  return result;
+}
 
 /*-----------------------------------------------------------------
 Challenge: 23-balancedBrackets
@@ -806,6 +822,21 @@ balancedBrackets( '[({}[])]' ) // => true
 -----------------------------------------------------------------*/
 // Your solution for 23-balancedBrackets here:
 
+function balancedBrackets(str) {
+  let stack = [];
+  let openBraces = { "(": ")", "[": "]", "{": "}" };
+
+  for (let i = 0; i < str.length; i++) {
+    if (openBraces.hasOwnProperty(str[i])) {
+      stack.push(str[i]);
+    } else {
+      if (openBraces[stack.pop()] !== str[i]) {
+        return false;
+      }
+    }
+  }
+  return stack.length === 0;
+}
 
 
 
@@ -836,8 +867,26 @@ isWinningTicket( [ ['ABC', 66], ['dddd', 15], ['Hello', 108] ] ) // => false
 -----------------------------------------------------------------*/
 // Your solution for 24-isWinningTicket here:
 
+function isWinningTicket(ticket) {
+  for (let i = 0; i < ticket.length; i++) {
+    let winningPair = ticket[i];
+    let string = winningPair[0];
+    let number = winningPair[1];
+    let found = false;
 
+    for (let j = 0; j < string.length; j++) {
+      if (string.charCodeAt(j) === number) {
+        found = true;
+        break;
+      }
+    }
 
+    if (!found) {
+      return false;
+    }
+  }
+  return true;
+}
 
 
 /*-----------------------------------------------------------------
@@ -866,9 +915,16 @@ getNumForIP( '10.0.0.1' ) // => 167772161
 -----------------------------------------------------------------*/
 // Your solution for 25-getNumForIP here:
 
+function getNumForIP(ip) {
+  let ipParts = ip.split(".");
+  let num = 0;
 
+  for (let i = 0; i < ipParts.length; i++) {
+    num += parseInt(ipParts[i]) * Math.pow(256, 3 - i);
+  }
 
-
+  return num;
+}
 
 /*-----------------------------------------------------------------
 Challenge: 26-toCamelCase
